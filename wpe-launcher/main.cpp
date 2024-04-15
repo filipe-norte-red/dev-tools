@@ -81,8 +81,6 @@ public:
     virtual ~WorkerPoolImplementation()
     {
     }
-
-    using Core::WorkerPool::Shutdown;
 };
 
 class DummyService : public PluginHost::Service
@@ -331,8 +329,6 @@ int main(int argc, char *argv[])
     sigaction(SIGTERM, &sa, nullptr);
     sigaction(SIGQUIT, &sa, nullptr);
 
-    Logging::SysLog(true);
-
     FactoriesImplementation factories;
     PluginHost::IFactories::Assign(&factories);
 
@@ -436,7 +432,7 @@ int main(int argc, char *argv[])
 
     } while (0);
 
-    workerPool.Shutdown();
+    workerPool.Stop();
     workerPool.Join();
 
     Core::WorkerPool::Assign(nullptr);

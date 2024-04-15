@@ -2,7 +2,7 @@ LIBS = WPEFrameworkCore WPEFrameworkPlugins
 CXXFLAGS += $(shell pkg-config --cflags $(LIBS))
 LDFLAGS += $(shell pkg-config --libs $(LIBS))
 
-CXXFLAGS += -std=c++11 -O0 -DUSE_R2=1
+CXXFLAGS += -std=c++11 -O0
 
 all: launcher
 
