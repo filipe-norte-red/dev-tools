@@ -88,7 +88,7 @@ class DummyService : public PluginHost::Service
     struct DummyCOMLink : public PluginHost::IShell::ICOMLink
     {
         void Register(RPC::IRemoteConnection::INotification* sink) { }
-        void Unregister(RPC::IRemoteConnection::INotification* sink) { }
+        void Unregister(const RPC::IRemoteConnection::INotification* sink) { }
         RPC::IRemoteConnection* RemoteConnection(const uint32_t connectionId)
         {
             return nullptr;
@@ -160,6 +160,14 @@ public:
     uint32_t Hibernate(const PluginHost::IShell::reason)
     {
         return 0;
+    }
+    Core::hresult Hibernate(const uint32_t timeout)
+    {
+        return {};
+    }
+    Core::hresult Metadata(string& info /* @out */) const
+    {
+        return {};
     }
     PluginHost::IShell::reason Reason() const
     {
